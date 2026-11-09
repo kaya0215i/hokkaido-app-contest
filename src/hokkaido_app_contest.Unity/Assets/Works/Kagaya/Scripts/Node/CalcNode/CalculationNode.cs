@@ -42,6 +42,9 @@ public class CalculationNode : BaseNode {
     protected string inputStringLeft;
     protected string inputStringRight;
 
+    /// <summary>
+    /// 計算
+    /// </summary>
     public float Calc() {
         inputStringLeft = inputLeft.ToString();
         inputStringRight = inputRight.ToString();
@@ -58,7 +61,7 @@ public class CalculationNode : BaseNode {
 
         // 文字列内の式を計算
         string calcString = GetCalcString();
-        var expr = new NCalc.Expression(calcString);
+        var expr = new Expression(calcString);
         float result = Convert.ToSingle(expr.Evaluate());
 
         string logTxt = $"{calcString}\n" +
@@ -69,6 +72,10 @@ public class CalculationNode : BaseNode {
         return result;
     }
 
+    /// <summary>
+    /// 計算式を文字列で返す
+    /// </summary>
+    /// <returns></returns>
     public string CalcChild() {
         inputStringLeft = inputLeft.ToString();
         inputStringRight = inputRight.ToString();
@@ -86,7 +93,10 @@ public class CalculationNode : BaseNode {
         // 計算式を文字列で返す
         return GetCalcString();
     }
-
+    
+    /// <summary>
+    /// CalcNodeにセット
+    /// </summary>
     public void AttachCalcNode(CalculationNode calcNode, InputSlot inputSlot) {
         switch (inputSlot) {
             case InputSlot.Left:
@@ -128,9 +138,5 @@ public class CalculationNode : BaseNode {
             calcString = $"({calcString})";
         }
         return calcString;
-    }
-
-    public override UniTask Execute(Transform target, CancellationToken ct) {
-        return UniTask.CompletedTask;
     }
 }
