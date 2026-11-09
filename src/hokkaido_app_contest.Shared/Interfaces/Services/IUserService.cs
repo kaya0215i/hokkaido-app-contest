@@ -1,4 +1,5 @@
-﻿using MagicOnion;
+﻿using hokkaido_app_contest.Shared.Models.Entities;
+using MagicOnion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace hokkaido_app_contest.Shared.Interfaces.Services {
         /// <summary>
         /// 接続テスト
         /// </summary>
-        UnaryResult ConnectionTest();
+        UnaryResult<User[]> ConnectionTest();
     }
 }

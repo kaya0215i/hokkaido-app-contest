@@ -1,7 +1,10 @@
 ﻿using hokkaido_app_contest.Server.Models.Contexts;
 using hokkaido_app_contest.Shared.Interfaces.Services;
+using hokkaido_app_contest.Shared.Models.Entities;
 using MagicOnion;
 using MagicOnion.Server;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace hokkaido_app_contest.Server.Services {
     public class UserService : ServiceBase<IUserService>, IUserService {
@@ -11,9 +14,9 @@ namespace hokkaido_app_contest.Server.Services {
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         // DI
-        //public UserService(GameDbContext context) {
-        //    _context = context;
-        //}
+        public UserService(GameDbContext context) {
+            _context = context;
+        }
 
         // タイムゾーン設定
         private TimeZoneInfo tokyoTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
@@ -28,9 +31,9 @@ namespace hokkaido_app_contest.Server.Services {
         /// <summary>
         /// 接続テスト
         /// </summary>
-        public UnaryResult ConnectionTest() {
+        public async UnaryResult<User[]> ConnectionTest() {
             Console.WriteLine("接続");
-            return UnaryResult.CompletedResult;
+            return await _context.Users.ToArrayAsync();
 
         }
     }

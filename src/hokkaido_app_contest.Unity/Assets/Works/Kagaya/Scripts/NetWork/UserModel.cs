@@ -4,6 +4,7 @@ using MagicOnion.Client;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using hokkaido_app_contest.Shared.Interfaces.Services;
+using hokkaido_app_contest.Shared.Models.Entities;
 using Grpc.Core;
 
 public class UserModel : Singleton<UserModel> {
@@ -30,7 +31,13 @@ public class UserModel : Singleton<UserModel> {
     /// </summary>
     public async UniTask ConnectionTest() {
         try {
-            await client.ConnectionTest();
+            User[] users = await client.ConnectionTest();
+
+            string txt = string.Empty;
+            foreach (var user in users) {
+                txt += $"Id：{user.Id}, Name：{user.Name}\n";
+            }
+            Debug.Log(txt);
         }catch (RpcException e) {
             Debug.LogException(e);
         }
