@@ -5,7 +5,14 @@ using UnityEngine;
 public class ForLoopNode : ConnectableChildNode {
     public int loopNum = 1;
 
+    public CalculationNode calcNode;
+
     public override async UniTask Execute(Transform target, CancellationToken ct) {
+        if (calcNode) {
+            // calcNodeにインスタンスがあればそのCalcメソッドを実行
+            loopNum = (int)calcNode.Calc();
+        }
+
         for (int i = 0; i < loopNum; i++) {
             foreach (var childNode in childNodeList) {
                 // キャンセルされてるなら例外
