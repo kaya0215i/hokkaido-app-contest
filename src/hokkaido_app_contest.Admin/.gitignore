@@ -7,11 +7,5 @@
 /dataSources/
 /dataSources.local.xml
 
-# MySQL runtime data
-/src/hokkaido_app_contest.Admin/mysql/
-
 /**/mysql.sock
 /**/mysql.sock.lock
-
-# phpMyAdmin session data
-/src/hokkaido_app_contest.Admin/phpmyadmin/sessions/

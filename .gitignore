@@ -482,3 +482,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# MySQL runtime data
+/src/hokkaido_app_contest.Admin/mysql/
+
+# phpMyAdmin session data
+/src/hokkaido_app_contest.Admin/phpmyadmin/sessions/
