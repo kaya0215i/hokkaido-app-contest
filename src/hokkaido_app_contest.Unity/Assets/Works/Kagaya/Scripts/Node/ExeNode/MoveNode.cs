@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class MoveNode : BaseNode {
+public class MoveNode : ExeCuteNode {
     public Vector3 moveValue;
 
     public override UniTask Execute(Transform target, CancellationToken ct) {

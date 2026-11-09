@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ConnectableChildNode : BaseNode {
+public abstract class ConnectableChildNode : ExeCuteNode {
     /// <summary>
     /// 子ノードリスト
     /// </summary>
-    [SerializeField] protected List<BaseNode> childNodeList = new List<BaseNode>();
+    [SerializeField] protected List<ExeCuteNode> childNodeList = new List<ExeCuteNode>();
 }
