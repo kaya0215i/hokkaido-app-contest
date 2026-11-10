@@ -5,14 +5,14 @@ using NCalc;
 using System;
 
 public class ArithmeticOperatorNode : CalculationNode {
-    public enum CalcType {
+    public enum ArithmeticOperatorType {
         add, // +
         subtract, // -
         multiply, // *
         divide, // /
     }
 
-    [SerializeField] private CalcType calcType;
+    [SerializeField] private ArithmeticOperatorType arithmeticOperatorType;
 
     /// <summary>
     /// 入力値_左
@@ -98,20 +98,20 @@ public class ArithmeticOperatorNode : CalculationNode {
 
     protected override string GetCalcString() {
         string calcString = "";
-        switch (calcType) {
-            case CalcType.add:
+        switch (arithmeticOperatorType) {
+            case ArithmeticOperatorType.add:
                 calcString = $"{inputStringLeft} + {inputStringRight}";
                 break;
 
-            case CalcType.subtract:
+            case ArithmeticOperatorType.subtract:
                 calcString = $"{inputStringLeft} - {inputStringRight}";
                 break;
 
-            case CalcType.multiply:
+            case ArithmeticOperatorType.multiply:
                 calcString = $"{inputStringLeft} * {inputStringRight}";
                 break;
 
-            case CalcType.divide:
+            case ArithmeticOperatorType.divide:
                 calcString =  $"{inputStringLeft} / {inputStringRight}";
                 break;
         }
