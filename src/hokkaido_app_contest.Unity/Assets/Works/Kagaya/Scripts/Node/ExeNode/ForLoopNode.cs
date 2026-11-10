@@ -5,7 +5,7 @@ using UnityEngine;
 public class ForLoopNode : ConnectableChildNode {
     public int loopNum = 1;
 
-    public CalculationNode calcNode;
+    public ArithmeticOperatorNode calcNode;
 
     public override async UniTask Execute(Transform target, CancellationToken ct) {
         if (calcNode) {

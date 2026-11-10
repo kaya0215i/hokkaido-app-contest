@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public abstract class ExeCuteNode : BaseNode {
+public abstract class ExecuteNode : BaseNode {
     /// <summary>
     /// 実行メソッド
     /// </summary>

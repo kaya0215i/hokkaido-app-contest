@@ -4,59 +4,51 @@ using UnityEngine;
 using NCalc;
 using System;
 
-public class CalculationNode : BaseNode {
+public class ArithmeticOperatorNode : CalculationNode {
     public enum CalcType {
-        add,
-        subtract,
-        multiply,
-        divide,
+        add, // +
+        subtract, // -
+        multiply, // *
+        divide, // /
     }
 
     [SerializeField] private CalcType calcType;
 
-    public enum InputSlot {
-        Left,
-        Right,
-    }
-
     /// <summary>
     /// 入力値_左
     /// </summary>
-    [SerializeField] protected float inputLeft;
+    [SerializeField] private float inputLeft;
     /// <summary>
     /// 入力値_右
     /// </summary>
-    [SerializeField] protected float inputRight;
+    [SerializeField] private float inputRight;
 
     /// <summary>
-    /// CalcNode_左
+    /// InputCalcNode_左
     /// </summary>
-    [SerializeField] protected CalculationNode inputCalcNodeLeft;
+    [SerializeField] private ArithmeticOperatorNode inputCalcNodeLeft;
     /// <summary>
-    /// CalcNode_右
+    /// InputCalcNode_右
     /// </summary>
-    [SerializeField] protected CalculationNode inputCalcNodeRight;
+    [SerializeField] private ArithmeticOperatorNode inputCalcNodeRight;
 
+    /// <summary>
+    /// ()つけるか
+    /// </summary>
     [SerializeField] private bool useParentheses = false;
 
-    protected string inputStringLeft;
-    protected string inputStringRight;
-
-    /// <summary>
-    /// 計算
-    /// </summary>
-    public float Calc() {
+    public override object Calc() {
         inputStringLeft = inputLeft.ToString();
         inputStringRight = inputRight.ToString();
 
-        // inputCalcNodeLeft にインスタンスがあればそのCalcChildメソッドを実行
+        // inputCalcNodeLeft にインスタンスがあればそのNestedCalcメソッドを実行
         if (inputCalcNodeLeft) {
-            inputStringLeft = inputCalcNodeLeft.CalcChild();
+            inputStringLeft = inputCalcNodeLeft.NestedCalc();
         }
 
-        // inputCalcNodeRight にインスタンスがあればそのCalcChildメソッドを実行
+        // inputCalcNodeRight にインスタンスがあればそのNestedCalcメソッドを実行
         if (inputCalcNodeRight) {
-            inputStringRight = inputCalcNodeRight.CalcChild();
+            inputStringRight = inputCalcNodeRight.NestedCalc();
         }
 
         // 文字列内の式を計算
@@ -72,49 +64,39 @@ public class CalculationNode : BaseNode {
         return result;
     }
 
-    /// <summary>
-    /// 計算式を文字列で返す
-    /// </summary>
-    /// <returns></returns>
-    public string CalcChild() {
+    public override string NestedCalc() {
         inputStringLeft = inputLeft.ToString();
         inputStringRight = inputRight.ToString();
 
-        // inputCalcNodeLeft にインスタンスがあればそのCalcChildメソッドを実行
+        // inputCalcNodeLeft にインスタンスがあればそのNestedCalcメソッドを実行
         if (inputCalcNodeLeft) {
-            inputStringLeft = inputCalcNodeLeft.CalcChild();
+            inputStringLeft = inputCalcNodeLeft.NestedCalc();
         }
 
-        // inputCalcNodeRight にインスタンスがあればそのCalcChildメソッドを実行
+        // inputCalcNodeRight にインスタンスがあればそのNestedCalcメソッドを実行
         if (inputCalcNodeRight) {
-            inputStringRight = inputCalcNodeRight.CalcChild();
+            inputStringRight = inputCalcNodeRight.NestedCalc();
         }
 
         // 計算式を文字列で返す
         return GetCalcString();
     }
     
-    /// <summary>
-    /// CalcNodeにセット
-    /// </summary>
-    public void AttachCalcNode(CalculationNode calcNode, InputSlot inputSlot) {
+    public override void AttachNode(object node, InputSlot inputSlot) {
         switch (inputSlot) {
             case InputSlot.Left:
-                inputCalcNodeLeft = calcNode;
+                inputCalcNodeLeft = (ArithmeticOperatorNode)node;
                 inputLeft = 0;
                 break;
 
             case InputSlot.Right:
-                inputCalcNodeRight = calcNode;
+                inputCalcNodeRight = (ArithmeticOperatorNode)node;
                 inputRight = 0;
                 break;
         }
     }
 
-    /// <summary>
-    /// 計算式を文字列で取得
-    /// </summary>
-    private string GetCalcString() {
+    protected override string GetCalcString() {
         string calcString = "";
         switch (calcType) {
             case CalcType.add:
