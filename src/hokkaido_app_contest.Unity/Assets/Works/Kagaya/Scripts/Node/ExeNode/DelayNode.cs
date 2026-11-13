@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public class DelayNode : ExeCuteNode {
+public class DelayNode : ExecuteNode {
     public float delayTime = 0;
 
     public override async UniTask Execute(Transform target, CancellationToken ct) {

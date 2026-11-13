@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class RotateNode : ExeCuteNode {
+public class RotateNode : ExecuteNode {
     public Vector3 rotateValue;
 
     public override UniTask Execute(Transform target, CancellationToken ct) {
