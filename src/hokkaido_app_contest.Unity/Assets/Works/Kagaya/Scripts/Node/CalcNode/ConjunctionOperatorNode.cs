@@ -81,6 +81,10 @@ public class ConjunctionOperatorNode : TrueOrFalseNode {
     }
 
     public override void AttachNode(object node, InputSlot inputSlot) {
+        if (!(TrueOrFalseNode)node) {
+            return;
+        }
+
         switch (inputSlot) {
             case InputSlot.Left:
                 inputOperatorNodeLeft = (TrueOrFalseNode)node;
@@ -106,5 +110,9 @@ public class ConjunctionOperatorNode : TrueOrFalseNode {
                 break;
         }
         return calcString;
+    }
+
+    public override void ConnectNode() {
+        throw new System.NotImplementedException();
     }
 }

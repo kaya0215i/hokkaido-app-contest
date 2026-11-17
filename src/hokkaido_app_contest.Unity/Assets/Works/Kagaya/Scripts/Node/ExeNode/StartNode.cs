@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class StartNode : ConnectableChildNode {
+public class StartNode : ConnectableParentNode {
     private NodeManager nodeManager;
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
+
         nodeManager = FindObjectsByType<NodeManager>(FindObjectsSortMode.None).First();
         if (nodeManager == null) {
             Debug.LogError("NodeManagerが見つかりませんでした。");

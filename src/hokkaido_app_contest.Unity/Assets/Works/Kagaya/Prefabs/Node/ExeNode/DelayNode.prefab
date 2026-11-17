@@ -373,6 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738a7e00174b2d44eb8e040587d5ac78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 1
+  connectNodeOffsetPos: {x: 0, y: -1.1}
+  myConnectParentNode: {fileID: 0}
+  myConnectChildNode: {fileID: 0}
   delayTime: 0
 --- !u!61 &630720595157117792
 BoxCollider2D:

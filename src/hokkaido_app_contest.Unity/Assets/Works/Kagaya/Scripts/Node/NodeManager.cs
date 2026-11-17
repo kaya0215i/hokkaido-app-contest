@@ -61,7 +61,7 @@ public class NodeManager : MonoBehaviour {
             await UniTask.WhenAll(tasks);
         }
         catch (OperationCanceledException e) {
-            
+            return;
         }
 
         Debug.Log("Stop");
