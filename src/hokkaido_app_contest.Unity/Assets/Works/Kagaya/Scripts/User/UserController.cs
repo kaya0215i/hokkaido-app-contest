@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,7 @@ public class UserController : MonoBehaviour {
     private UserInputActions _actions;
 
     // つかんでいるノード
-    private Transform grabbingNodeTransform;
+    private BaseNode grabbingNode;
     // つかんでいるノードとのオフセット
     private Vector2 grabOffset;
 
@@ -24,8 +25,9 @@ public class UserController : MonoBehaviour {
     }
 
     private void Update() {
-        if(grabbingNodeTransform && _actions.User.Interact.IsPressed()) {
-            grabbingNodeTransform.transform.position = GetPointerPos() + grabOffset;
+        // ノードつかんでいるならマウスの/タッチしている位置に移動
+        if(grabbingNode && _actions.User.Interact.IsPressed()) {
+            grabbingNode.transform.position = GetPointerPos() + grabOffset;
         }
     }
 
@@ -41,15 +43,31 @@ public class UserController : MonoBehaviour {
             
             if (hit &&
                 hit.collider.CompareTag("Node")) {
-                Debug.Log(hit.collider.name);
-                grabbingNodeTransform = hit.collider.transform;
-                grabOffset = (Vector2)grabbingNodeTransform.position - worldPoint;
+                Debug.Log($"GrabNode：{hit.collider.name}");
+
+                // ノードの情報保持
+                grabbingNode = hit.collider.GetComponent<BaseNode>(); ;
+                grabbingNode.GrabNode();
+
+                grabOffset = (Vector2)grabbingNode.transform.position - worldPoint;
+
+                // 衝突判定のためのRigidbodyを付与
+                Rigidbody2D nodeRb = grabbingNode.gameObject.AddComponent<Rigidbody2D>();
+                nodeRb.bodyType = RigidbodyType2D.Kinematic;
             }
         }
         else if (ctxt.canceled) {
             Debug.Log("離す");
 
-            grabbingNodeTransform = null;
+            // ノードの情報を捨てる
+            if (grabbingNode) {
+                grabbingNode.ReleseNode();
+                Destroy(grabbingNode.gameObject.GetComponent<Rigidbody2D>());
+
+                grabbingNode.ConnectNode();
+
+                grabbingNode = null;
+            }
             grabOffset = Vector2.zero;
         }
     }

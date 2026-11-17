@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class IfNode : ConnectableChildNode {
+public class IfNode : ConnectableParentNode {
     public TrueOrFalseNode calcNode;
 
     public override async UniTask Execute(Transform target, CancellationToken ct) {

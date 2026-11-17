@@ -149,7 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6703c01efa0ba4e4c835aa9441a92828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 2
+  connectNodeOffsetPos: {x: 0, y: -1.1}
+  myConnectParentNode: {fileID: 0}
+  myConnectChildNode: {fileID: 0}
+  childNodeOffsetPos: {x: 1, y: -1.1}
   childNodeList: []
+  isConnectableUnder: 1
   loopNum: 1
   calcNode: {fileID: 0}
 --- !u!61 &7737886325551101710

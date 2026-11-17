@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class WhileLoopNode : ConnectableChildNode {
+public class WhileLoopNode : ConnectableParentNode {
     public override async UniTask Execute(Transform target, CancellationToken ct) {
         while (true) {
             foreach (var childNode in childNodeList) {

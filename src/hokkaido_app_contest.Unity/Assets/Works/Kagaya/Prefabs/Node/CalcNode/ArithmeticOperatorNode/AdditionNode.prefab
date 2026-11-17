@@ -236,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26745ec2580e4b8448b2deb34d2c5828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 3
+  isGrabbed: 0
   arithmeticOperatorType: 0
   inputLeft: 0
   inputRight: 0
