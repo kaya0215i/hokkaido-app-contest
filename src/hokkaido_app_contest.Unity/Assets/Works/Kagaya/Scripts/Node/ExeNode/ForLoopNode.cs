@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class ForLoopNode : ConnectableChildNode {
+public class ForLoopNode : ConnectableParentNode {
     public int loopNum = 1;
 
     public ArithmeticOperatorNode calcNode;

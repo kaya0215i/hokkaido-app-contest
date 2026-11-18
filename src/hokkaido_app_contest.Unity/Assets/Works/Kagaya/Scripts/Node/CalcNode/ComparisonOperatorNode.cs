@@ -81,6 +81,10 @@ public class ComparisonOperatorNode : TrueOrFalseNode {
     }
 
     public override void AttachNode(object node, InputSlot inputSlot) {
+        if (!(ArithmeticOperatorNode)node) {
+            return;
+        }
+
         switch (inputSlot) {
             case InputSlot.Left:
                 inputCalcNodeLeft = (ArithmeticOperatorNode)node;
@@ -117,5 +121,9 @@ public class ComparisonOperatorNode : TrueOrFalseNode {
                 break;
         }
         return calcString;
+    }
+
+    public override void ConnectNode() {
+        throw new NotImplementedException();
     }
 }

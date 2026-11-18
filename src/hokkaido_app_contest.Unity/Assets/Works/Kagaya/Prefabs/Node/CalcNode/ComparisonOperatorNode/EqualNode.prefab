@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26372cadae3bb82439fdec853a3478af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 5
+  isGrabbed: 0
   comparisonOperatorType: 0
   inputLeft: 0
   inputRight: 0

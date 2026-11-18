@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf7a4410b6803a4a9ecf6be3cfd0a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 1
+  isGrabbed: 0
+  connectNodeOffsetPos: {x: 0, y: -1.1}
+  myParentNode: {fileID: 0}
+  myConnectNode: {fileID: 0}
   moveValue: {x: 0, y: 0, z: 0}
 --- !u!61 &8419047199826030004
 BoxCollider2D:

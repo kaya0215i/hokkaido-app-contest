@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f07db0bfd2ed249b934b1366104a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 6
+  isGrabbed: 0
   conjunctionOperatorType: 0
   inputOperatorNodeLeft: {fileID: 0}
   inputOperatorNodeRight: {fileID: 0}

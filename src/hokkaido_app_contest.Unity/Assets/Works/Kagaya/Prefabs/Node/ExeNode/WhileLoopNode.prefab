@@ -236,7 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2271afdaad05144bf5668802dde1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 2
+  connectNodeOffsetPos: {x: 0, y: -1.1}
+  myConnectParentNode: {fileID: 0}
+  myConnectChildNode: {fileID: 0}
+  childNodeOffsetPos: {x: 1, y: -1.1}
   childNodeList: []
+  isConnectableUnder: 0
 --- !u!61 &3211556086767246779
 BoxCollider2D:
   m_ObjectHideFlags: 0
